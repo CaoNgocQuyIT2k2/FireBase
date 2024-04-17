@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     StorageReference storageReference;
     LinearProgressIndicator progressIndicator;
     Uri image;
-    MaterialButton uploadImage, selectImage;
+    MaterialButton uploadImage, selectImage, getListImageButton; // Thêm biến cho nút getListImageButton
     ImageView imageView;
     private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         selectImage = findViewById(R.id.selectImage);
         uploadImage = findViewById(R.id.uploadImage);
+        getListImageButton = findViewById(R.id.getListImage); // Khởi tạo nút getListImageButton
 
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +80,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 uploadImage(image);
+            }
+        });
+
+        // Thêm sự kiện onClickListener cho nút getListImageButton
+        getListImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ListImageActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -103,5 +113,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 }
